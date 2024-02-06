@@ -11,18 +11,23 @@ this project still needs security implementations (mongodb authentication and et
 
 - pull this repository by this command:
 
->for ssh:
+> for ssh:
 
 ```bash
 git clone git@gitlab.com:gmohsenfarajollahi/tasktracker.git
 ```
 
->for https:
+> for https:
 
 ```bash
 git clone https://gitlab.com/gmohsenfarajollahi/tasktracker.git
 ```
 
+- open the project directory with cd command:
+
+```bash
+cd ./tasktracker
+```
 
 - run docker compose
 
@@ -30,7 +35,23 @@ git clone https://gitlab.com/gmohsenfarajollahi/tasktracker.git
 docker compose up
 ```
 
-and you are ready to go!
+and you are ready to go! you can add `-d` to end of command for de-attached mode.
+
+if you want to stop all of the containers do as follow:
+
+- open the project directory in terminal and enter this command:
+
+```bash
+docker down
+```
+
+if you want to also remove the database you can add `--volumes` flag to end of command above.
+
+if you made any changes to `api` or `front` folder you should re-build the images using:
+
+```bash
+docker build
+```
 
 - mongodb server will run on http://localhost:27017
 - application's backend (api) will run on http://localhost:3000
