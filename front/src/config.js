@@ -1,2 +1,2 @@
-const APIURL = import.meta.env.VITE_API_URL || "http://localhost:3000";
+const APIURL = import.meta.env.VITE_API_URL || "http://localhost:3000/api";
 export { APIURL };
