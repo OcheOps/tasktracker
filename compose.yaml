@@ -1,0 +1,39 @@
+services:
+  api:
+    build:
+      context: ./api
+    ports:
+      - "${PORT}:${PORT}"
+    depends_on:
+      - db
+    env_file:
+      - .env
+    networks:
+      - mynetwork
+
+  db:
+    image: mongo:6.0.13-jammy
+    ports:
+      - "${MONGODB_PORT}:${MONGODB_PORT}"
+    # environment:
+    # MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
+    # MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
+    # MONGODB_PORT: ${MONGODB_PORT}
+    volumes:
+      - /data:/data/db
+    restart: always
+    networks:
+      - mynetwork
+    container_name: mongodb
+  front:
+    build:
+      context: ./front
+    ports:
+      - "8080:8080"
+    depends_on:
+      - api
+    env_file:
+      - .env
+networks:
+  mynetwork:
+    driver: bridge
