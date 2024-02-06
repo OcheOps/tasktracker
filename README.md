@@ -11,9 +11,18 @@ this project still needs security implementations (mongodb authentication and et
 
 - pull this repository by this command:
 
+>for ssh:
+
 ```bash
-git pull
+git clone git@gitlab.com:gmohsenfarajollahi/tasktracker.git
 ```
+
+>for https:
+
+```bash
+git clone https://gitlab.com/gmohsenfarajollahi/tasktracker.git
+```
+
 
 - run docker compose
 
