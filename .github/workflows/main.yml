@@ -1,4 +1,4 @@
-name: CI/CD Deploy to VM
+name: CI/CD Pipeline
 
 on:
   push:
@@ -7,34 +7,20 @@ on:
 
 jobs:
   deploy:
-    name: Build & Deploy to VM
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repository
+      - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Set up SSH key
-        uses: webfactory/ssh-agent@v0.8.0
-        with:
-          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
-
-      - name: Deploy over SSH
+      - name: Deploy via SSH
         uses: appleboy/ssh-action@v1.0.0
         with:
           host: ${{ secrets.REMOTE_HOST }}
           username: ${{ secrets.REMOTE_USER }}
-          port: 22
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
             cd /usr/ocheg/tasktracker
-
-            echo "🛠️ Pulling latest code..."
             git pull origin main
-
-            echo "🧼 Stopping old containers..."
             docker compose down
-
-            echo "🚀 Building and starting containers..."
             docker compose up -d --build
-
-            echo "✅ Deployment complete!"
