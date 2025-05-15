@@ -5,7 +5,7 @@ COPY . .
 
 RUN npm install
 RUN npm run build
-RUN npm install -g serve
+RUN npm install -g http-server
 
 EXPOSE 4173
-CMD ["serve", "-s", "dist", "-l", "4173"]
+CMD ["http-server", "dist", "-p", "4173"]
