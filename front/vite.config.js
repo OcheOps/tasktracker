@@ -5,14 +5,14 @@ export default defineConfig({
   base: "/",
   plugins: [react()],
   preview: {
-    port: 8080,
+    port: 4173,
     strictPort: true,
     host: "0.0.0.0", // <-- REQUIRED for Docker/Nginx access
   },
   server: {
-    port: 8080,
+    port: 4173,
     strictPort: true,
     host: "0.0.0.0", // good for dev inside container too
-    origin: "http://localhost:8080",
+    origin: "http://localhost:4173", // <-- REQUIRED for Docker/Nginx access
   },
 });
