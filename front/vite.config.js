@@ -13,6 +13,6 @@ export default defineConfig({
     port: 4173,
     strictPort: true,
     host: "0.0.0.0", // good for dev inside container too
-    origin: "http://localhost:4173", // <-- REQUIRED for Docker/Nginx access
+   // origin: "http://localhost:4173", // <-- REQUIRED for Docker/Nginx access
   },
 });
